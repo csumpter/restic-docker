@@ -1,6 +1,6 @@
 # Restic Docker Docs
 
-Provides an easy to use docker container for running [restic backup](https://github.com/restic/restic) on any number of systems.
+Provides an easy to use docker container for running [restic backup](https://github.com/restic/restic).
 
 Written with Synology NAS products as the target platform, but will run on anything that can run a docker container.
 
@@ -9,11 +9,11 @@ Written with Synology NAS products as the target platform, but will run on anyth
 ### Docker Daemon
 
 + Have a system with docker daemon properly installed. You can find more information on that from the [official docker installation documentation](https://docs.docker.com/install/).
-+ If you are setting this container up on a Synology NAS, ensure you have the synology docker app installed.
++ If you are setting this container up on a Synology NAS, ensure you have the Synology docker app installed.
 
 ### Cloud Storage account or backup target
 
-+ If you do not have some sort of restic compatible storage account setup, where you will be sending your backups to, go ahead and get that setup. A list of supported cloud account types can be found [here]().
++ If you do not have some sort of restic compatible storage account setup, where you will be sending your backups to, go ahead and get that setup. A list of supported cloud account types can be found [here](https://restic.readthedocs.io/en/stable/030_preparing_a_new_repo.html).
 
 ## Available Docker Container Images
 
@@ -23,10 +23,6 @@ Images are hosted on [Docker Hub](https://cloud.docker.com/u/csumpter/repository
 + `dev` is built from __HEAD__ of master of the restic repository, and combined with the __dev__ branch, of this repository.
 
 There are pinned docker images for each restic release, found on the [official restic project](https://github.com/restic/restic/releases). These are built automatically each night, so if there is a new release, expect there to be a new version of this container available the next day.
-
-## History
-
-Some of this scripting is a direct fork of labaro's work found [here](https://github.com/lobaro/restic-backup-docker).
 
 ## Usage
 
@@ -60,4 +56,8 @@ Some of this scripting is a direct fork of labaro's work found [here](https://gi
 ### Logging
 
 Logs can be found in `/var/log/restic` on the container.
+
+## Credit
+
+Some of this scripting is a direct fork of labaro's work found [here](https://github.com/lobaro/restic-backup-docker).
 
