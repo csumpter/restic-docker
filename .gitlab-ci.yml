@@ -1,0 +1,30 @@
+stages:
+  - build-latest
+  - build-release
+
+build-latest:
+  stage: build-release
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - docker build --build-arg SHA=master -t $CI_REGISTRY_IMAGE:latest .
+    - docker login -u $CI_REGISTRY_USER -p $CI_BUILD_PASSWORD
+    - docker push $CI_REGISTRY_IMAGE:latest
+  only:
+    - master
+
+build-release:
+  stage: build-release 
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - apk add curl
+    - export SHA=$(curl -s https://api.github.com/repos/restic/restic/releases/latest | grep 'tag_name' | cut -d\" -f4)
+    - export TAG=$(echo $SHA | sed -e "s/[v]//")
+    - docker build --build-arg SHA=$SHA -t $CI_REGISTRY_IMAGE:$TAG .
+    - docker login -u $CI_REGISTRY_USER -p $CI_BUILD_PASSWORD
+    - docker push $CI_REGISTRY_IMAGE:$TAG
+  only:
+    - master
