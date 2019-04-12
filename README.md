@@ -22,7 +22,7 @@ Images are hosted on [Docker Hub](https://cloud.docker.com/u/csumpter/repository
 + `latest` is built from __HEAD__ of master of the restic repository, combined with the __HEAD__ of master, of this repository.
 + `dev` is built from __HEAD__ of master of the restic repository, and combined with the __dev__ branch, of this repository.
 
-There are pinned docker images for each restic release, found on the [official restic project](https://github.com/restic/restic/releases). These are built automatically each night, so if there is a new release, expect there to be a new version of this container available the next day.
+There are pinned docker images for each restic release, found on the [official restic project](https://github.com/restic/restic/releases). These are built automatically each night, so if there is a new release of restic, expect there to be a new version of this container available the next day.
 
 ## Usage
 
