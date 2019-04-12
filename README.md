@@ -2,7 +2,7 @@
 
 Provides an easy to use docker container for running [restic backup](https://github.com/restic/restic) on any number of systems.
 
-This was originally written with Synology NAS products as the target platform.
+Written with Synology NAS products as the target platform, but will run on anything that can run a docker container.
 
 ## Prereqs
 
