@@ -1,5 +1,5 @@
 # Stage 1
-FROM golang:1.11.2-alpine
+FROM golang:1.13-alpine
 ARG SHA=master
 RUN apk add --update --no-cache ca-certificates fuse openssh-client git
 RUN git clone https://github.com/restic/restic.git /usr/local/src/restic && \
