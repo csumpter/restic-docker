@@ -5,7 +5,7 @@ RUN apk add --update --no-cache ca-certificates fuse openssh-client git
 RUN git clone https://github.com/restic/restic.git /usr/local/src/restic
 
 WORKDIR /usr/local/src/restic
-run git checkout "$SHA" \
+RUN git checkout "$SHA" \
 	    && go run build.go
 
 # Stage 2
