@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-logFile=/var/log/restic/forget/`date +"%Y-%m-%d-%H-%M-%S"`.log
+logFile="/var/log/restic/forget/$(date +"%Y-%m-%d-%H-%M-%S").log"
 
-function log() {
-    echo "[$(date +"%Y-%m-%d %H:%M:%S")]$1" | tee -a $logFile
+log() {
+    echo "[$(date +"%Y-%m-%d %H:%M:%S")]$1" | tee -a "$logFile"
 }
 
-function showTime () {
+showTime () {
     num=$1
     min=0
     hour=0
@@ -34,24 +34,22 @@ function showTime () {
     log "[INFO] Total forget time: ${time}"
 }
 
-start=`date +%s`
+start=$(date +%s)
 log "[INFO] Starting forget"
 log "[INFO] Log filename: ${logFile}"
 log "[INFO] RESTIC_FORGET_ARGS: ${RESTIC_FORGET_ARGS}"
 
 if [ -n "${RESTIC_FORGET_ARGS}" ]; then
-    start=`date +%s`
-    restic forget ${RESTIC_FORGET_ARGS} | tee -a $logFile
+    restic forget ${RESTIC_FORGET_ARGS} | tee -a "$logFile"
     rc=$?
-    end=`date +%s`
     if [[ $rc == 0 ]]; then
-        log "[INFO] Forget successfull"
+        log "[INFO] Forget succeeded"
     else
-        log "[ERROR] Forget failed with status ${$rc}"
+        log "[ERROR] Forget failed with status $rc"
         restic unlock
     fi
 fi
 
-end=`date +%s`
+end=$(date +%s)
 log "[INFO] Finished forget at $(date)"
 showTime $((end-start))
