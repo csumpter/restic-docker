@@ -9,7 +9,7 @@ RUN git checkout "$SHA" \
 	    && go run build.go
 
 # Stage 2
-FROM golang:1.11.2-alpine
+FROM golang:1.13-alpine
 ENV LOG=/var/log/restic/restic.log
 ENV BACKUP_CRON="0 1 * * *"
 ENV RESTIC_TAG=latest
