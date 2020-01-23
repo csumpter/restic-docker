@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-logFile=/var/log/restic/prune/$(date +"%Y-%m-%d-%H-%M-%S").log
+logFile="/var/log/restic/prune/$(date +"%Y-%m-%d-%H-%M-%S").log"
 
-function log() {
+log() {
     echo "[$(date +"%Y-%m-%d %H:%M:%S")]$1" | tee -a "$logFile"
 }
 
-function showTime () {
+showTime() {
     num=$1
     min=0
     hour=0
@@ -38,15 +38,13 @@ start=$(date +%s)
 log "[INFO] Starting prune"
 log "[INFO] Log filename: ${logFile}"
 
-start=$(date +%s)
 log "[INFO] Starting prune process"
 restic prune | tee -a "$logFile"
 rc=$?
-end=$(date +%s)
 if [[ $rc == 0 ]]; then
-    log "[INFO] Prune Successful"
+    log "[INFO] Prune succeeded"
 else
-    log "[ERROR] Prune failed with status ${!rc}"
+    log "[ERROR] Prune failed with status $rc"
     restic unlock
 fi
 

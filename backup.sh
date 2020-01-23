@@ -2,13 +2,13 @@
 set -e
 # credit: some of the code for this script inspired by https://github.com/lobaro/restic-backup-docker
 
-logFile=/var/log/restic/backup/$(date +"%Y-%m-%d-%H-%M-%S").log
+logFile="/var/log/restic/backup/$(date +"%Y-%m-%d-%H-%M-%S").log"
 
-function log() {
+log() {
     echo "[$(date +"%Y-%m-%d %H:%M:%S")]$1" | tee -a "$logFile"
 }
 
-function showTime () {
+showTime() {
     num=$1
     min=0
     hour=0
@@ -46,7 +46,7 @@ fi
 restic backup /data ${RESTIC_BACKUP_ARGS} --tag="${RESTIC_TAG}" | tee -a "$logFile"
 rc=$?
 if [[ $rc == 0 ]]; then
-    log "[INFO] Backup successful"
+    log "[INFO] Backup succeeded"
 else
     log "[ERROR] Backup failed with status ${rc}"
     restic unlock
