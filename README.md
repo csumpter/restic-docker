@@ -34,7 +34,7 @@ There are pinned docker images for each restic release, found on the [official r
 * [OPTIONAL] `RESTIC_BACKUP_ARGS` - example: `-o b2.connections=20`
 	* See the full list of options in the restic docs.
 * [OPTIONAL] `FORGET_CRON` - example: `1 3 * * 0`
-* [OPTIONAL] `RESTIC_FORGET_ARGS` - example `--keep-last 7`
+* [OPTIONAL] `RESTIC_FORGET_ARGS` - example: `--keep-last 7` or `--keep-last 7 --prune` if you wish to perform a prune operation at the same time.
 * [OPTIONAL] `PRUNE_CRON` - example: `1 3 * * 1`
 * [OPTIONAL] `RESTIC_TAG` - default value is `latest`
 * [OPTIONAL] `TZ` - [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones), default is `America/New_York`. Set this value if you want your log entries to have the relevant time in them.
